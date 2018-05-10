@@ -1,8 +1,31 @@
 .header{
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    background: red;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: red;
+}
+.header-logo{
+  display: flex;
+  align-items: center;
+  float: left;
+  width: 200px;
+  height: 60px;
+  margin-left: 20px;
+}
+.header-logo-icon{
+    float: left;
+    width: 40px;
+    height: 40px;
+    background: url('http://placehold.it/40x40/E99/fff.png&text=cloud') no-repeat 50% 50%
+}
+
+.header-tool{
+  float: right;
+  height: 100%;
+  background: #f1f1f1;
 }

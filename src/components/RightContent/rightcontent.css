@@ -1,0 +1,8 @@
+.rightcontent{
+  position: absolute;
+  top: 0;
+  left: 200px;
+  right: 0;
+  bottom: 0;
+  background: #f00111
+}
