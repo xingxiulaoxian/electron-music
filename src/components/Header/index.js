@@ -11,8 +11,8 @@ class Header extends Component {
 
         {/* 历史记录 */}
         <div>
-          <span>prev</span>
-          <span>next</span>
+          <button><span>prev</span></button>
+          <button><span>next</span></button>
         </div>
 
         {/* 搜索 */}
