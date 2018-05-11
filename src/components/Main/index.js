@@ -6,7 +6,7 @@ import './main.css';
 class Main extends Component {
     render () {
         return (
-            <div class="main">
+            <div className="main">
                 <LeftNav />
     
                 <RightContent />

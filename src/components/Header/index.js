@@ -3,9 +3,9 @@ import './header.css';
 class Header extends Component {
   render() {
     return (
-      <div class="header">
-        <div class="header-logo">
-          <div class="header-logo-icon"></div>
+      <div className="header">
+        <div className="header-logo">
+          <div className="header-logo-icon"></div>
           <span>网易云音乐</span>
         </div>
 
@@ -36,16 +36,9 @@ class Header extends Component {
         </div>
 
         {/* 关闭按钮 */}
-        <div class="header-tool">
+        <div className="header-tool">
           关闭/最小化/最大化/关闭窗口进入后台
         </div>
-
-
-        
-
-
-
-
 
 
 

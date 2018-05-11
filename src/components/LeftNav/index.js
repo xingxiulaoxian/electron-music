@@ -4,7 +4,7 @@ import './leftnav.css';
 class LeftNav extends Component {
     render () {
         return (
-            <div class="left-nav">
+            <div className="left-nav">
                 <h3>发现音乐</h3>
                 <ul>
                     <li> 推荐</li>

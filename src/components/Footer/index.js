@@ -1,13 +1,25 @@
 import React, { Component } from 'react';
 import './footer.css';
 class Footer extends Component {
+    constructor (props){
+        super(props)
+        console.log(this)
+        console.log(this.refs.audio)
+    }
+    play () {
+        debugger
+        let audio = this.refs.audio
+        debugger
+        audio.play()
+        console.log(audio)
+    }
     render () {
         return (
-            <div class="footer">
-                <audio src="./juejiang.mp3"></audio>
+            <div className="footer">
+                <audio ref="audio" src="./juejiang.mp3" />
                 <div>
                     <button>&lt;&lt;</button>
-                    <button>II</button>
+                    <button onClick={this.play}>II</button>
                     <button>&gt;&gt;</button>
                 </div>
                 <div>
