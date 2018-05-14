@@ -1,69 +1,105 @@
 import React, { Component } from 'react';
 import './footer.css';
 import mp3  from './music.mp3'
+function PrefixInteger(num, length) {  
+    return num > Math.pow(10, length) ? num : ( '0000000000000000' + num ).substr( -length );  
+}
+function resultFormat(result) {
+    var h = PrefixInteger(Math.floor(result/3600%24), 2);
+    var m = PrefixInteger(Math.floor(result/60%60), 2);
+    var s = PrefixInteger(Math.floor(result%60), 2);
+    return h === '00' ? `${m}:${s}` : `${m}:${m}:${s}`
+}
 export default class Footer extends Component {
     constructor (props) {
         super(props)
         this.state = {
+            audio: null,
+            btnPlay: 'II',
             currentTime : '00:00',
             duration: '00:00',
             progress: 0
         }
         this.play  = this.play.bind(this)
+        this.ended = this.ended.bind(this)
+        this.setAudioProgress = this.setAudioProgress.bind(this)
+        this.setCurrentTime = this.setCurrentTime.bind(this)
+        this.getMousePos = this.getMousePos.bind(this)
+    }
+    componentDidMount () {
+        this.setState({
+            audio: this.refs.audio
+        })
+        console.log('willllllllllllllll')
     }
     play () {
-
-        function PrefixInteger(num, length) {  
-            return num > Math.pow(10, length) ? num : ( '0000000000000000' + num ).substr( -length );  
-        }
-        function resultFormat(result) {
-            var h = PrefixInteger(Math.floor(result/3600%24), 2);
-            var m = PrefixInteger(Math.floor(result/60%60), 2);
-            var s = PrefixInteger(Math.floor(result%60), 2);
-            return h === '00' ? `${m}:${s}` : `${m}:${m}:${s}`
-        }
-
-        let audio = this.refs.audio
+        let audio = this.state.audio
         if(audio.paused){
             audio.play();
+            this.setState({
+                btnPlay: 'I>'
+            })
+            this.setAudioProgress()
         }else{
             audio.pause()
+            this.setState({
+                btnPlay: 'II'
+            })
             clearInterval( this.timerID);
-            return false;
         }
-        let currentTime = (audio.currentTime / 60).toFixed(2)
-        let duration = (audio.duration / 60).toFixed(2)
-
-        console.log(currentTime)
-        console.log(duration)
+    }
+    setAudioProgress () {
+        let audio = this.state.audio
+        let progress = Math.floor((audio.currentTime / audio.duration)*1000)/10;
         this.setState({
             currentTime : resultFormat(audio.currentTime),
-            duration: resultFormat(audio.duration)
+            duration: resultFormat(audio.duration),
+            progress: progress
         })
-
-        // 
+        
         this.timerID = setInterval(() => {
-            let progress = Math.floor((audio.currentTime / audio.duration)*1000)/10;
+            progress = Math.floor((audio.currentTime / audio.duration)*1000)/10;
             console.log(progress)
             this.setState({
-                progress: progress,
-                currentTime : resultFormat(audio.currentTime)
+                currentTime : resultFormat(audio.currentTime),
+                progress: progress
             })
         }, 1000)
 
     }
+    ended () {
+        let audio = this.refs.audio
+        this.setState({
+            btnPlay: 'II'
+        })
+        this.setAudioProgress(audio)
+        clearInterval( this.timerID)
+    }
+    getMousePos (e){
+        let pos = (e.clientX - e.target.offsetLeft) / e.target.clientWidth
+        let audio = this.refs.audio
+        let second = audio.duration * pos
+
+        this.setCurrentTime (second)
+        this.play()
+        console.log(pos)
+    }
+    setCurrentTime (second) {
+        let audio = this.refs.audio
+        audio.currentTime = second
+    }
     render () {
         return (
             <div className="footer">
-                <audio ref="audio" src={mp3} />
+                <audio ref="audio" src={mp3} onEnded={this.ended} />
                 <div>
                     <button>&lt;&lt;</button>
-                    <button onClick={this.play}>II</button>
+                    <button onClick={this.play}>{this.state.btnPlay}</button>
                     <button>&gt;&gt;</button>
                 </div>
                 <div>
                     <span>{this.state.currentTime}</span>
-                    <div className="progress">
+                    <div className="progress" onClick={this.getMousePos}>
                         <span className="progress-bar" style={{width:  this.state.progress + '%'}}></span>
                     </div>
                     <span>{this.state.duration}</span>
