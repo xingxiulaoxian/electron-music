@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import './header.css';
+import logo from '../../images/sound-img.png'
 class Header extends Component {
   render() {
     return (
       <div className="header">
         <div className="header-logo">
-          <div className="header-logo-icon"></div>
+          <div className="header-logo-icon">
+            <img src={logo} alt=""/>
+          </div>
           <span>网易云音乐</span>
         </div>
 
@@ -17,7 +20,7 @@ class Header extends Component {
 
         {/* 搜索 */}
         <div>
-          <input type="search" value="" placeholder="搜索音乐/歌手/歌词/专辑" />
+          <input type="text" value="" placeholder="搜索音乐/歌手/歌词/专辑" />
         </div>
 
         {/* user */}

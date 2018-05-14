@@ -21,13 +21,18 @@ export default class Footer extends Component {
             btnPlay: 'II',
             currentTime : '00:00',
             duration: '00:00',
-            progress: 0
+            progress: 0,
+
+            isMouseDown:false
         }
         this.play  = this.play.bind(this)
         this.ended = this.ended.bind(this)
         this.setAudioProgress = this.setAudioProgress.bind(this)
         this.setCurrentTime = this.setCurrentTime.bind(this)
         this.getMousePos = this.getMousePos.bind(this)
+        this.mouseMoveBar = this.mouseMoveBar.bind(this)
+        this.mouseDownBtn = this.mouseDownBtn.bind(this)
+        this.mouseUpBtn = this.mouseUpBtn.bind(this)
     }
     componentDidMount () {
         this.setState({
@@ -51,6 +56,7 @@ export default class Footer extends Component {
             clearInterval( this.timerID);
         }
     }
+
     setAudioProgress () {
         let audio = this.state.audio
         let progress = Math.floor((audio.currentTime / audio.duration)*1000)/10;
@@ -79,14 +85,34 @@ export default class Footer extends Component {
         clearInterval( this.timerID)
     }
     getMousePos (e){
-        let pos = (e.clientX - e.target.offsetLeft) / e.target.clientWidth
+        let progress = this.refs.progress;
         let audio = this.refs.audio
+        let pos = (e.clientX - progress.offsetLeft) / progress.clientWidth
         let second = audio.duration * pos
 
         this.setCurrentTime (second)
         this.play()
         console.log(pos)
     }
+    // 移动拖块
+    mouseMoveBar (e) {
+        if(this.state.isMouseDown){
+            this.getMousePos (e)
+        }
+    }
+    // 按住拖快 
+    mouseDownBtn (){
+        this.setState({
+            isMouseDown: true
+        })
+    }
+    mouseUpBtn (){
+        this.setState({
+            isMouseDown: false
+        })
+    }
+
+
     setCurrentTime (second) {
         let audio = this.refs.audio
         audio.currentTime = second
@@ -104,7 +130,7 @@ export default class Footer extends Component {
                     <img src={img} alt=""/>
                 </div>
                 <div className="footer-progress-content">
-                    <div>
+                    <div className="footer-progress-top">
                         <div><span className="music-name">{this.state.musicName}</span></div>
                         <div>
                             <span>{this.state.currentTime}</span>
@@ -112,8 +138,15 @@ export default class Footer extends Component {
                             <span>{this.state.duration}</span>
                         </div>
                     </div>
-                    <div className="progress" onClick={this.getMousePos}>
-                        <span className="progress-bar" style={{width:  this.state.progress + '%'}}></span>
+                    <div className="progress" ref="progress" 
+                        onClick={this.getMousePos} 
+                        onMouseMove={this.mouseMoveBar} 
+                        onMouseUp={this.mouseUpBtn}
+                        onMouseLeave={this.mouseUpBtn}>
+                        <div className="progress-bg"></div>
+                        <div className="progress-bar" style={{width:  this.state.progress + '%'}}>
+                            <span className="progress-btn" onMouseDown={this.mouseDownBtn} ></span>
+                        </div>
                     </div>
                 </div>
                 <div>
