@@ -7,7 +7,7 @@
   left: 0;
   right: 0;
   height: 60px;
-  background: red;
+  background: #f1f1f1;
 }
 .header-logo{
   display: flex;

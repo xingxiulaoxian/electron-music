@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './footer.css';
 import mp3  from './music.mp3'
+import img from '../../images/sound-img.png'
 function PrefixInteger(num, length) {  
     return num > Math.pow(10, length) ? num : ( '0000000000000000' + num ).substr( -length );  
 }
@@ -14,6 +15,8 @@ export default class Footer extends Component {
     constructor (props) {
         super(props)
         this.state = {
+            musicName: 'music-name',
+
             audio: null,
             btnPlay: 'II',
             currentTime : '00:00',
@@ -92,17 +95,26 @@ export default class Footer extends Component {
         return (
             <div className="footer">
                 <audio ref="audio" src={mp3} onEnded={this.ended} />
-                <div>
-                    <button>&lt;&lt;</button>
-                    <button onClick={this.play}>{this.state.btnPlay}</button>
-                    <button>&gt;&gt;</button>
+                <div className="footer-btn-group">
+                    <button className="footer-btn-play footer-btn-small">&lt;&lt;</button>
+                    <button className="footer-btn-play" onClick={this.play}>{this.state.btnPlay}</button>
+                    <button className="footer-btn-play footer-btn-small">&gt;&gt;</button>
                 </div>
-                <div>
-                    <span>{this.state.currentTime}</span>
+                <div className="footer-image-content">
+                    <img src={img} alt=""/>
+                </div>
+                <div className="footer-progress-content">
+                    <div>
+                        <div><span className="music-name">{this.state.musicName}</span></div>
+                        <div>
+                            <span>{this.state.currentTime}</span>
+                            <span>/</span>
+                            <span>{this.state.duration}</span>
+                        </div>
+                    </div>
                     <div className="progress" onClick={this.getMousePos}>
                         <span className="progress-bar" style={{width:  this.state.progress + '%'}}></span>
                     </div>
-                    <span>{this.state.duration}</span>
                 </div>
                 <div>
                     <span>icon-sound</span>
