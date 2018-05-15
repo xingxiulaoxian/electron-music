@@ -4,25 +4,11 @@
   align-items: center;
   position: absolute;
   top: 0;
-  left: 0;
+  left: 200px;
   right: 0;
-  height: 60px;
+  height: 50px;
   background: #f1f1f1;
 }
-.header-logo{
-  display: flex;
-  align-items: center;
-  float: left;
-  width: 200px;
-  height: 60px;
-  margin-left: 20px;
-}
-.header-logo-icon{
-    float: left;
-    width: 40px;
-    height: 40px;
-}
-
 .header-tool{
   float: right;
   height: 100%;

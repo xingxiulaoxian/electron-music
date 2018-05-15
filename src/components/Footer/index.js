@@ -18,6 +18,7 @@ export default class Footer extends Component {
             musicName: 'music-name',
 
             audio: null,
+            isPlay: false,
             btnPlay: 'II',
             currentTime : '00:00',
             duration: '00:00',
@@ -45,13 +46,13 @@ export default class Footer extends Component {
         if(audio.paused){
             audio.play();
             this.setState({
-                btnPlay: 'I>'
+                isPlay: true
             })
             this.setAudioProgress()
         }else{
             audio.pause()
             this.setState({
-                btnPlay: 'II'
+                isPlay: false
             })
             clearInterval( this.timerID);
         }
@@ -122,9 +123,15 @@ export default class Footer extends Component {
             <div className="footer">
                 <audio ref="audio" src={mp3} onEnded={this.ended} />
                 <div className="footer-btn-group">
-                    <button className="footer-btn-play footer-btn-small">&lt;&lt;</button>
-                    <button className="footer-btn-play" onClick={this.play}>{this.state.btnPlay}</button>
-                    <button className="footer-btn-play footer-btn-small">&gt;&gt;</button>
+                    <button className="footer-btn-play footer-btn-small">
+                        <span className="iconfont icon-icon-test3"></span>
+                    </button>
+                    <button className="footer-btn-play" onClick={this.play}>
+                        <span className={`iconfont icon-icon-test${this.state.isPlay ? '1' : '2'}`}></span>
+                    </button>
+                    <button className="footer-btn-play footer-btn-small">
+                        <span className="iconfont icon-icon-test7"></span>
+                    </button>
                 </div>
                 <div className="footer-image-content">
                     <img src={img} alt=""/>
@@ -150,19 +157,16 @@ export default class Footer extends Component {
                     </div>
                 </div>
                 <div>
-                    <span>icon-sound</span>
-                    <div>-------</div>
+                    <span className="iconfont icon-icon-test20"></span>
                 </div>
                 <div>
-                    <span>xunhuan</span>
-                    <div>-------</div>
+                    <span className="iconfont icon-icon-test8"></span>
                 </div>
                 <div>
-                    <span>list</span>
-                    <div>-------</div>
+                    <span className="iconfont icon-icon-test12"></span>
                 </div>
                 <div>
-                    <span>ci</span>
+                    <span className="iconfont icon-icon-test14"></span>
                 </div>
             </div>
         )

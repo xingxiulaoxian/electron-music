@@ -1,21 +1,17 @@
 import React, { Component } from 'react';
 import './header.css';
-import logo from '../../images/sound-img.png'
 class Header extends Component {
   render() {
     return (
       <div className="header">
-        <div className="header-logo">
-          <div className="header-logo-icon">
-            <img src={logo} alt=""/>
-          </div>
-          <span>网易云音乐</span>
-        </div>
 
         {/* 历史记录 */}
         <div>
-          <button><span>prev</span></button>
-          <button><span>next</span></button>
+          <div>
+            <span className="iconfont icon-icon-test3"></span>
+            <span className="iconfont icon-icon-test7"></span>
+            <span className="iconfont icon-icon-test8"></span>
+          </div>
         </div>
 
         {/* 搜索 */}
@@ -23,10 +19,7 @@ class Header extends Component {
           <input type="text" value="" placeholder="搜索音乐/歌手/歌词/专辑" />
         </div>
 
-        {/* user */}
-        <div>
-          user
-        </div>
+
 
         {/* 皮肤 */}
         <div>
