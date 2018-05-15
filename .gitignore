@@ -1,3 +1,4 @@
 node_modules
+build
 src/components/Footer/music.mp3
 src/components/Footer/horse.ogg
