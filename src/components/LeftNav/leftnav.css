@@ -4,18 +4,17 @@
     left: 0;
     bottom: 70px;
     width: 200px;
-    padding-top: 30px;
     background: #1d1c24;
-    overflow: auto;
     color: #fff;
 }
 .left-user-content{
+    padding: 30px 0;
     text-align: center;
 }
 .left-user-img {
     width: 55px;
     height: 55px;
-    margin: auto auto 20px;
+    margin: auto;
     border-radius: 50%;
     overflow: hidden;
 }
@@ -24,8 +23,14 @@
     height: 100%;
 }
 .left-menu{
+    position: absolute;
+    top: 115px;
+    bottom: 0;
+    box-sizing: border-box;
+    width: 100%;
     padding-left: 15px;
     text-align: left;
+    overflow: auto;
 }
 .left-menu-title{
     margin: 10px 0 0;
