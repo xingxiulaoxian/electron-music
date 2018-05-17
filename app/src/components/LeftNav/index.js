@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './leftnav.css';
 import img from '../../images/sound-img.png'
-
+import Login from '../Login'
 class LeftNav extends Component {
     render () {
         return (
@@ -10,6 +10,7 @@ class LeftNav extends Component {
                     <div className="left-user-img">
                         <img src={img} alt=""/>
                     </div>
+                    <Login />
                 </div>
 
                 <div className="left-menu">
