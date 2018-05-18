@@ -21,10 +21,19 @@ export default class Login extends Component {
 
   login () {
     console.log('get--------------------')
-    this.axios.get('./api/playlist/hot', {})
-      .then(function (res) {
-        console.log(res);
-      })
+    let data = {
+      email: this.state.email,
+      password: this.state.password
+    };
+    this.axios.get('./api/login', {
+      params: data
+    })
+    .then(function (res) {
+      console.log(res);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
   render () {

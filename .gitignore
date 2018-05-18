@@ -1,4 +1,5 @@
 node_modules
 build
-src/components/Footer/music.mp3
-src/components/Footer/horse.ogg
+app/src/components/Footer/music.mp3
+app/src/components/Footer/horse.ogg
+app/src/data/login.json
