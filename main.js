@@ -1,7 +1,6 @@
 const {app, BrowserWindow} = require('electron')
   const path = require('path')
   const url = require('url')
-  
   function createWindow () {
     // 创建一个窗口.
     win = new BrowserWindow({width: 800, height: 600, frame: false})
